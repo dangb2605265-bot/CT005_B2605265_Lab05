@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Infographic hướng dẫn xem, chắt lọc và ghi nhớ nội dung video Lab 5.">
+	<title>Infographic &amp; Video YouTube | Lab 5</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #172d35;
+			--muted: #587078;
+			--paper: #f5f5ef;
+			--teal: #087e78;
+			--coral: #ed795d;
+			--yellow: #f4c95d;
+			--line: #d7e1dc;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			background-color: var(--paper);
+			background-image: radial-gradient(#dce5de 0.8px, transparent 0.8px);
+			background-size: 18px 18px;
+			color: var(--ink);
+			font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+			line-height: 1.5;
+		}
+
+		.page-shell {
+			width: min(1080px, calc(100% - 40px));
+			margin: 0 auto;
+			padding: 38px 0 56px;
+		}
+
+		.eyebrow {
+			margin: 0 0 10px;
+			color: var(--teal);
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		.intro {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			align-items: end;
+			gap: 24px;
+			margin-bottom: 26px;
+		}
+
+		h1, h2, p { margin-top: 0; }
+
+		h1 {
+			max-width: 640px;
+			margin-bottom: 0;
+			font-size: clamp(2.2rem, 5vw, 4.1rem);
+			line-height: 0.98;
+			letter-spacing: 0;
+		}
+
+		.intro-note {
+			max-width: 245px;
+			margin-bottom: 4px;
+			color: var(--muted);
+			font-size: 0.95rem;
+		}
+
+		.content-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.2fr) minmax(290px, 0.8fr);
+			gap: 18px;
+			align-items: stretch;
+		}
+
+		.video-panel, .infographic {
+			min-width: 0;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.video-panel { background: #fff; }
+
+		.video-frame {
+			display: block;
+			width: 100%;
+			aspect-ratio: 16 / 9;
+			border: 0;
+			background: #142a31;
+		}
+
+		.video-caption {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 16px;
+			padding: 15px 18px;
+		}
+
+		.video-caption strong { font-size: 1rem; }
+		.video-caption span { color: var(--muted); font-size: 0.85rem; }
+
+		.infographic {
+			position: relative;
+			padding: 24px;
+			background: #e6f1eb;
+		}
+
+		.infographic::after {
+			position: absolute;
+			right: -34px;
+			bottom: -54px;
+			width: 160px;
+			height: 160px;
+			border: 22px solid rgb(8 126 120 / 10%);
+			border-radius: 50%;
+			content: "";
+			pointer-events: none;
+		}
+
+		.infographic h2 {
+			max-width: 300px;
+			margin-bottom: 20px;
+			font-size: 1.65rem;
+			line-height: 1.1;
+		}
+
+		.steps {
+			position: relative;
+			display: grid;
+			gap: 12px;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		.steps::before {
+			position: absolute;
+			top: 24px;
+			bottom: 24px;
+			left: 19px;
+			width: 2px;
+			background: #a9c9bd;
+			content: "";
+		}
+
+		.step {
+			position: relative;
+			display: grid;
+			grid-template-columns: 40px 1fr;
+			gap: 12px;
+			align-items: start;
+		}
+
+		.step-number {
+			z-index: 1;
+			display: grid;
+			width: 40px;
+			aspect-ratio: 1;
+			place-items: center;
+			border: 3px solid #e6f1eb;
+			border-radius: 50%;
+			background: var(--teal);
+			color: white;
+			font-size: 0.8rem;
+			font-weight: 800;
+		}
+
+		.step:nth-child(2) .step-number { background: var(--coral); }
+		.step:nth-child(3) .step-number { background: #c08c16; }
+
+		.step h3 {
+			margin: 2px 0 2px;
+			font-size: 1rem;
+		}
+
+		.step p {
+			margin-bottom: 0;
+			color: var(--muted);
+			font-size: 0.88rem;
+		}
+
+		.takeaway {
+			position: relative;
+			z-index: 1;
+			margin: 20px 0 0 52px;
+			padding: 11px 13px;
+			border-left: 4px solid var(--yellow);
+			background: rgb(255 255 255 / 65%);
+			font-size: 0.88rem;
+			font-weight: 700;
+		}
+
+		footer {
+			margin-top: 20px;
+			color: var(--muted);
+			font-size: 0.82rem;
+			text-align: right;
+		}
+
+		@media (max-width: 740px) {
+			.page-shell { width: min(100% - 28px, 560px); padding-top: 28px; }
+			.intro { grid-template-columns: 1fr; gap: 12px; }
+			.intro-note { max-width: 440px; }
+			.content-grid { grid-template-columns: 1fr; }
+			.infographic { padding: 22px; }
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			.video-panel, .infographic { animation: arrive 500ms ease-out both; }
+			.infographic { animation-delay: 100ms; }
+			@keyframes arrive {
+				from { opacity: 0; transform: translateY(10px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="page-shell">
+		<header class="intro">
+			<div>
+				<p class="eyebrow">Lab 05 · Video & infographic</p>
+				<h1>Infographic &amp;<br>Video YouTube</h1>
+			</div>
+			<p class="intro-note">Xem video Lab 5 và khám phá ba bước giúp chắt lọc, ghi nhớ điều hữu ích.</p>
+		</header>
+
+		<section class="content-grid" aria-label="Video và infographic">
+			<article class="video-panel" aria-label="Video YouTube Lab 5">
+				<iframe
+					class="video-frame"
+					src="https://www.youtube-nocookie.com/embed/ii7XG9HVafQ"
+					title="Video Lab 5 trên YouTube"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					referrerpolicy="strict-origin-when-cross-origin"
+					allowfullscreen
+					loading="lazy">
+				</iframe>
+				<div class="video-caption">
+					<strong>Video Lab 5</strong>
+					<span>YouTube</span>
+				</div>
+			</article>
+
+			<aside class="infographic" aria-labelledby="infographic-title">
+				<p class="eyebrow">Infographic · 3 bước</p>
+				<h2 id="infographic-title">Biến một lượt xem thành điều hữu ích</h2>
+				<ol class="steps">
+					<li class="step">
+						<span class="step-number" aria-hidden="true">01</span>
+						<div>
+							<h3>Quan sát</h3>
+							<p>Theo dõi nội dung và để ý những ý được nhấn mạnh.</p>
+						</div>
+					</li>
+					<li class="step">
+						<span class="step-number" aria-hidden="true">02</span>
+						<div>
+							<h3>Chắt lọc</h3>
+							<p>Ghi lại một ý chính cùng chi tiết giúp bạn hiểu ý đó.</p>
+						</div>
+					</li>
+					<li class="step">
+						<span class="step-number" aria-hidden="true">03</span>
+						<div>
+							<h3>Ghi nhớ</h3>
+							<p>Tóm tắt bằng lời của mình hoặc thử áp dụng điều vừa học.</p>
+						</div>
+					</li>
+				</ol>
+				<p class="takeaway">Mẹo nhỏ: tạm dừng video khi gặp một ý quan trọng.</p>
+			</aside>
+		</section>
+
+		<footer>© 2026 Lab 05. Video thuộc bản quyền của chủ sở hữu nội dung và được nhúng từ YouTube.</footer>
+	</main>
+</body>
+</html>
